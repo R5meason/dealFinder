@@ -3,24 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, user-scalable=no">
-    <title>Front Page</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Eczar:700" rel="stylesheet">
+    <title>Deal Found</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
     <script src="http://code.angularjs.org/1.3.15/angular-route.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
 </head>
-<body>
-<header id="frontHeader">
-    <img src="images/Hot-Deals.png">
+<body ng-controller="tableController as tc" ng-cloak>
+<header>
+    <div id="headerDeal">Hot Deals</div>
 </header>
-<main id="frontMain">
-    <a class="frontButton" href="user_home.html">USER</a>
-    <a class="frontButton" href="biz_home.html">Business</a>
+<main>
+    <div id="map">
+    </div>
+    <div id="winnerWindow" ng-init="tc.winnerWindow=false" ng-show="tc.winnerWindow">
+        Congratulations!
+        <br>
+        One Hot Deal Coming Your Way!<br>
+        Enter your email: <input type="text" id="emailInfo" name="emailInfo" ng-model="emailInfo">
+        <button type="button" value="Submit" ng-click="tc.acceptWinner()">
+            Send
+        </button>
+        <br>
+        or Remember the code:
+        <p id="showCode">{{tc.selectedDealCode}}</p>
+    </div>
+    <div id="confirmWindow" ng-init="tc.confirmWindow=false" ng-show="tc.confirmWindow">
+        Are you sure you want to accept this offer?<br>
+        <button class="confirmButton" ng-click="tc.confirmWinner()">Accept</button>
+        <button class="confirmButton" ng-click="tc.declineWinner()">Decline</button>
+    </div>
+    <div ng-init="tc.newWindow=false" ng-show="tc.newWindow" ng-class="tc.new_window()">
+        <button id="extraButton" type="button" ng-click="tc.extraButton()">Click</button>
+        <div id="dealInfo">
+            <div class="businessInfo">Deal details: {{tc.selectedDealDetails}}</div>
+            <div class="businessInfo">Business Name: {{tc.selectedDealName}}</div>
+            <div class="businessInfo">Address: {{tc.selectedDealAddress}}</div>
+            <div class="businessInfo">Phone: {{tc.selectedDealPhone}}</div>
+            <div class="businessInfo">Review: {{tc.selectedYelpReview}}</div>
+            <div class="businessInfo">Time: {{tc.selectedDealTime}} Distance: {{tc.selectedDealDistance}}les</div>
+            <br>
+            <div id="panel">Directions:</div>
+        </div>
+        <button id="buttonClickYes" ng-click="tc.acceptClicked()">YES</button>
+        <button id="buttonClickNo" ng-click="tc.declineClicked()">NO</button>
+    </div>
 </main>
-<footer id="frontFooter">
-    Learning Fuze 2016
+<footer class="buttons">
+    <button type="button" id="distance1" ng-click="tc.clickMileSearch(1)">1 Mile</button>
+    <button type="button" id="distance3" ng-click="tc.clickMileSearch(3)">3 Miles</button>
+    <button type="button" id="distance5" ng-click="tc.clickMileSearch(5)">5 Miles</button>
+    <input type="text" id="distanceCustom" ng-model="distanceCustom">
+    <button id="distanceRand" type="button" value="Submit"
+            ng-click="tc.clickMileSearch()">Submit
+    </button>
 </footer>
+<script src="dealApp.js"></script>
+<script src="script.js"></script>
+<script src="tableController.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaQFUJYfRkQlrcGW1yW283j2uTl88RY4E&callback=initMap"></script>
 </body>
 </html>
