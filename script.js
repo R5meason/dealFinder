@@ -5,13 +5,12 @@ app.factory("myFactory", function ($http, $log, $q, $timeout) {
     $log.info(server.dealArray);
 
     var config = {
-        apiKey: "AIzaSyBzjXjba7aeBAdup78ENXxmD_Qi8OmSWGQ",
-        authDomain: "dealapp-bf461.firebaseapp.com",
-        databaseURL: "https://dealapp-bf461.firebaseio.com",
-        storageBucket: "dealapp-bf461.appspot.com",
-        messagingSenderId: "1029357138612"
+        apiKey: "AIzaSyDjr_Nhbt-Z8NNrDl_vRgsKgq7M4f0jSbE",
+        authDomain: "dealappporto.firebaseapp.com",
+        databaseURL: "https://dealappporto.firebaseio.com",
+        storageBucket: "dealappporto.appspot.com",
+        messagingSenderId: "819287812530"
     };
-
     firebase.initializeApp(config);
     var fbRef = firebase.database();
 
