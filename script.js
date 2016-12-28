@@ -39,8 +39,10 @@ app.factory("myFactory", function ($http, $log, $q, $timeout) {
     server.selectedDealDirections = {};
 
     var uluru = {         //user location
-        lat: null,
-        lng: null
+        // lat: null,
+        // lng: null
+        lat: 33.898983,
+        lng: -118.345780
     };
     var startPos = null;
     server.createAccount = function (name, street, city, state, zip, phone, email, password) {
